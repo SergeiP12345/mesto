@@ -6,6 +6,8 @@
   position: absolute;
   top: -21px;
   right: -37px;
+  background-color: transparent;
+  border: 1px solid #fff;
 }
 
 .profile__button:hover {
