@@ -8,23 +8,26 @@ let NameInput = document.querySelector ('.popup__name');
 let textInput = document.querySelector ('.popup__text');
 let popupSumbit = document.querySelector ('.popup__save-button');
 
-function openPopup () {
-    aboutPopup.classList.add ('popup_opened');
-    NameInput.value = UserName.textContent;
-    textInput.value = UserText.textContent;
-  }
-  
-  function closePopup ()  {
-    aboutPopup.classList.remove ('popup_opened');
-  }
 
-  function formSubmitHandler (evt) {
-    evt.preventDefault();
-    UserName.textContent = NameInput.value;
+
+  aboutButton.addEventListener  ('click' , (evt) => { 
+    evt.preventDefault ();
+     aboutPopup.classList.add('popup_opened');
+     NameInput.value = UserName.textContent;
+     textInput.value = UserText.textContent;
+ });
+
+ aboutButtonclose.addEventListener  ('click' , () => {
+     aboutPopup.classList.remove('popup_opened');
+     
+ })
+ 
+ function handleFormSubmit (evtm) {
+     evtm.preventDefault();
+     UserName.textContent = NameInput.value;
     UserText.textContent = textInput.value;
-    closePopup ();
-}
-  
-  aboutButton.addEventListener ('click', openPopup);
-  aboutButtonclose.addEventListener ('click', closePopup);
-  formElement.addEventListener('submit', formSubmitHandler);
+    aboutPopup.classList.remove('popup_opened');
+   
+ }
+ 
+ formElement.addEventListener('submit', handleFormSubmit);
