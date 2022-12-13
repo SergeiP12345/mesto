@@ -1,0 +1,25 @@
+.profile__button {
+  margin: 37px 0 0 18px;
+  width: 24px;
+  height: 24px;
+  background-image: url(../../../images/buttion.svg);
+  position: absolute;
+  top: -21px;
+  right: -37px;
+}
+
+.profile__button:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+@media (max-width: 626px) {
+  .profile__button {
+    margin: 0;
+    background-image: url(../../../images/butionmin.svg);
+    width: 18px;
+    height: 18px;
+    top: 7px;
+    right: -33px;
+  }
+}

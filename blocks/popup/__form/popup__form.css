@@ -1,0 +1,6 @@
+.popup__form {
+  border: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

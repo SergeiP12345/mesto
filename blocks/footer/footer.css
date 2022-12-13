@@ -1,0 +1,29 @@
+.footer {
+  margin-top: 67px;
+  margin-left: 15%;
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    margin-left: 6%;
+  }
+}
+
+@media (max-width: 610px) {
+  .footer {
+    margin-top: 48px;
+    margin-left: 6%;
+  }
+}
+
+@media (max-width: 583px) {
+  .footer {
+    margin-left: 15%;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer {
+    margin-left: 6%;
+  }
+}
