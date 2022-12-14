@@ -3,16 +3,18 @@
   padding: 0;
   max-width: 142px;
   min-height: 33px;
+  margin-bottom: 41px;
 }
-@media (max-width: 870px) {
+@media (max-width: 910px) {
   .header__logo {
     margin-left: 27px;
   }
 }
 
-@media (max-width: 870px) {
+@media (max-width: 610px) {
   .header__logo {
     max-width: 103.74px;
     min-height: 24.4px;
+    margin-bottom: 31.6px;
   }
 }

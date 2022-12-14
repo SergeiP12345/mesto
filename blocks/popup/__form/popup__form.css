@@ -1,6 +1,9 @@
 .popup__form {
   border: 0;
+  display: flex;
+  flex-direction: column;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  outline: none;
 }

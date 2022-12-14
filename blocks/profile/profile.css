@@ -9,13 +9,25 @@
   justify-content: flex-end;
 }
 
-@media (max-width: 626px) {
+@media (max-width: 910px) {
+  .profile {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+@media (max-width: 750px) {
   .profile {
     flex-direction: column;
     align-items: center;
     margin-top: 42px;
-  }
-  .profile:last-child {
     justify-content: center;
+  }
+}
+
+@media (max-width: 390px) {
+  .profile {
+    margin-left: auto;
+    margin-right: auto;
   }
 }

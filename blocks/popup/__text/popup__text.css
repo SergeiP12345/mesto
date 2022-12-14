@@ -3,7 +3,7 @@
   font-size: 14px;
   line-height: 17px;
   margin-top: 30px;
-  margin-left: 36px;
+  margin-left: 9%;
   margin-bottom: 13px;
   max-width: 358px;
   color: #000000;
@@ -20,6 +20,5 @@
     max-width: 238px;
     font-size: 14px;
     line-height: 17px;
-    margin-left: 22px;
   }
 }

@@ -8,11 +8,7 @@
   display: none;
   justify-content: center;
   align-items: flex-start;
-  padding: 195px 0 0 0;
-}
-
-.popup_opened {
-  display: flex;
+  padding: 15% 0 20% 0;
 }
 
 @media (max-width: 610px) {
