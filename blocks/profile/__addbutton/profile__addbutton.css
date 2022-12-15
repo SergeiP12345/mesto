@@ -4,6 +4,8 @@
   background-image: url(../../../images/addbutiom.svg);
   width: 150px;
   height: 50px;
+  border: 0;
+  background-color: transparent;
 }
 
 .profile__addbutton:hover {
@@ -11,7 +13,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 755px) {
   .profile__addbutton {
     background-image: url(../../../images/addbutiombig.svg);
     margin: 36px auto 0 auto;

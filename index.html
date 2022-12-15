@@ -23,18 +23,21 @@
             alt="Изображение профиля"
           />
           <div class="profile__content">
-            <div class="profile__info">
-              <h2 class="profile__title">Жак-Ив Кусто</h2>
-              <button
-                class="profile__button"
-                type="button"
-                aria-label="Редактирование профиля"
-              ></button>
-            </div>
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button
+              class="profile__button"
+              type="button"
+              aria-label="Редактирование профиля"
+            ></button>
+
             <p class="profile__text">Исследователь океана</p>
           </div>
 
-          <div class="profile__addbutton"></div>
+          <button
+            class="profile__addbutton"
+            type="button"
+            aria-label="Добавить фото"
+          ></button>
         </section>
 
         <section class="elements" aria-label="Блок с фогографиями пейзажа">
@@ -47,7 +50,7 @@
             <div class="element__pozion">
               <h2 class="element__title">Карачаевск</h2>
               <button
-                class="element__like"
+                class="element__like element__like_active"
                 type="button"
                 aria-label="Лайк"
               ></button>
@@ -65,6 +68,7 @@
               <button
                 class="element__like element__like_active"
                 aria-label="Лайк"
+                type="button"
               ></button>
             </div>
           </article>
@@ -80,6 +84,7 @@
               <button
                 class="element__like element__like_active"
                 aria-label="Лайк"
+                type="button"
               ></button>
             </div>
           </article>
@@ -95,6 +100,7 @@
               <button
                 class="element__like element__like_active"
                 aria-label="Лайк"
+                type="button"
               ></button>
             </div>
           </article>
@@ -110,6 +116,7 @@
               <button
                 class="element__like element__like_active"
                 aria-label="Лайк"
+                type="button"
               ></button>
             </div>
           </article>
@@ -125,6 +132,7 @@
               <button
                 class="element__like element__like_active"
                 aria-label="Лайк"
+                type="button"
               ></button>
             </div>
           </article>
@@ -141,21 +149,21 @@
             type="button"
             aria-label="Закрыть"
           ></button>
-          <h1 class="popup__header">Редактировать профиль</h1>
-          <form class="popup__form">
+          <h2 class="popup__header">Редактировать профиль</h2>
+          <form class="popup__form" name="Редактирование профиля">
             <input
               class="popup__name"
               name="Name"
               type="text"
               placeholder="Имя"
-              value
+              value=""
             />
 
             <input
               class="popup__name popup__name_text"
               type="text"
               placeholder="О себе"
-              value
+              value=""
             />
 
             <button class="popup__save-button" type="submit">Сохранить</button>

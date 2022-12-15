@@ -1,14 +1,18 @@
 .profile__content {
-  display: flex;
-  flex-direction: column;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 360px;
-  position: relative;
+  align-items: baseline;
+  max-width: 360px;
+  display: grid;
+  gap: 7px 18px;
+  grid-template-areas:
+    "profile__title profile__button"
+    "profile__text profile__text";
+  grid-template-columns: auto 1fr;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 755px) {
   .profile__content {
     align-items: center;
   }

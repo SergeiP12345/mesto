@@ -1,15 +1,13 @@
 .profile__button {
   padding: 0;
-  margin: 37px 0 0 18px;
+  margin-top: 37px;
   width: 24px;
   height: 24px;
   background-image: url(../../../images/buttion.svg);
-  position: absolute;
-  top: -22px;
-  right: 1px;
+  grid-area: profile__button;
   background-color: transparent;
   border: 1px solid #fff;
-  z-index: 2;
+  display: grid;
 }
 
 .profile__button:hover {
@@ -17,13 +15,11 @@
   cursor: pointer;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 755px) {
   .profile__button {
     margin: 0;
     background-image: url(../../../images/butionmin.svg);
     width: 18px;
     height: 18px;
-    top: 7px;
-    right: -33px;
   }
 }

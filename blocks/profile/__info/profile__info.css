@@ -1,9 +1,9 @@
 .profile__info {
   margin: 22px 0 0px 30px;
-  position: relative;
+  display: grid;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 755px) {
   .profile__info {
     margin-top: 26px;
     margin-left: 0;

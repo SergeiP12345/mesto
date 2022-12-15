@@ -8,9 +8,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  grid-area: profile__title;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 755px) {
   .profile__title {
     font-size: 27px;
     line-height: 33px;
