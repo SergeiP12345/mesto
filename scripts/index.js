@@ -5,7 +5,7 @@ let userName = document.querySelector ('.profile__title');
 let userText = document.querySelector ('.profile__text');
 let formElement = document.querySelector ('.popup__form');
 let nameInput = document.querySelector ('.popup__name_type_about');
-let textInput = document.querySelector ('.popup__name_text_about');
+let textInput = document.querySelector ('.popup__name_type_text');
 
 
 

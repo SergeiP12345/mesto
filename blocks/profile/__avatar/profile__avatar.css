@@ -5,3 +5,9 @@
   min-height: 120px;
   border-radius: 80px;
 }
+
+@media (max-width: 755px) {
+  .profile__avatar {
+    margin-right: 0;
+  }
+}

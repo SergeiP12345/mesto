@@ -15,5 +15,6 @@
 @media (max-width: 755px) {
   .profile__content {
     align-items: center;
+    margin-top: 26px;
   }
 }
