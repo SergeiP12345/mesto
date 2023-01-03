@@ -30,8 +30,8 @@ const initialCards = [
 const aboutButton = document.querySelector ('.profile__button');
 const addButton = document.querySelector ('.profile__addbutton');
 const aboutPopup = document.querySelector ('.popup');
-const addPopup = document.querySelector ('.popup__add');
-const photoPopup = document.querySelector ('.popup__photo');
+const addPopup = document.querySelector ('.popup_add');
+const photoPopup = document.querySelector ('.popup_photo');
 const aboutButtonclose = document.querySelector ('.popup__close-button');
 const addButtonclose = document.querySelector ('.popup__close-button_add');
 const photoButtonclose = document.querySelector ('.popup__close-button_image')
@@ -75,7 +75,7 @@ function createCard (element){
 
     photoButton.addEventListener ('click' , (evt) => { 
     
-      photoPopup.classList.add('popup__photo_opened');
+      photoPopup.classList.add('popup_photo_opened');
       const cardTitle = card.querySelector ('.element__title');
       const cardImage = card.querySelector  ('.element__image');
       const img = document.querySelector('.popup__image');
@@ -85,7 +85,7 @@ function createCard (element){
     });
     
     photoButtonclose.addEventListener ('click' , () => {
-      photoPopup.classList.remove('popup__photo_opened');
+      photoPopup.classList.remove('popup_photo_opened');
       
     });
 
