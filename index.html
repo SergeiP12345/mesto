@@ -40,104 +40,12 @@
           ></button>
         </section>
 
-        <section class="elements" aria-label="Блок с фогографиями пейзажа">
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/kirill-pershin-1088404-unsplash.jpg"
-              alt="Фото Карачаевск"
-            />
-            <div class="element__pozion">
-              <h2 class="element__title">Карачаевск</h2>
-              <button
-                class="element__like element__like_active"
-                type="button"
-                aria-label="Лайк"
-              ></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/kirill-pershin-1404681-unsplash.png"
-              alt="Фото гора Эльбрус"
-            />
-            <div class="element__pozion">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <button
-                class="element__like element__like_active"
-                aria-label="Лайк"
-                type="button"
-              ></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/kirill-pershin-1556355-unsplash(1).png"
-              alt="Фото Домбай"
-            />
-            <div class="element__pozion">
-              <h2 class="element__title">Домбай</h2>
-              <button
-                class="element__like element__like_active"
-                aria-label="Лайк"
-                type="button"
-              ></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/marek-piwnicki-kWj7LtANpS8-unsplash.jpg"
-              alt="Фото Болгария"
-            />
-            <div class="element__pozion">
-              <h2 class="element__title">Болгария</h2>
-              <button
-                class="element__like element__like_active"
-                aria-label="Лайк"
-                type="button"
-              ></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/s-tsuchiya-9-g_lY-37_w-unsplash.jpg"
-              alt="Фото Китай"
-            />
-            <div class="element__pozion">
-              <h2 class="element__title">Китай</h2>
-              <button
-                class="element__like element__like_active"
-                aria-label="Лайк"
-                type="button"
-              ></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/marek-piwnicki-kWj7LtANpS8-unsplash.jpg"
-              alt="Фото Швейцарии"
-            />
-            <div class="element__pozion">
-              <h2 class="element__title">Швейцария</h2>
-              <button
-                class="element__like element__like_active"
-                aria-label="Лайк"
-                type="button"
-              ></button>
-            </div>
-          </article>
-        </section>
+        <section
+          class="elements"
+          aria-label="Блок с фогографиями пейзажа"
+        ></section>
       </main>
+
       <footer class="footer">
         <p class="footer__text">&copy; 2022 Mesto Russia</p>
       </footer>
@@ -145,7 +53,7 @@
       <div class="popup">
         <div class="popup__content">
           <button
-            class="popup__close-button"
+            class="popup__close-button popup__close-button"
             type="button"
             aria-label="Закрыть"
           ></button>
@@ -174,6 +82,73 @@
           </form>
         </div>
       </div>
+
+      <div class="popup__add">
+        <div class="popup__content">
+          <button
+            class="popup__close-button popup__close-button_add"
+            type="button"
+            aria-label="Закрыть"
+          ></button>
+          <h2 class="popup__header">Новое место</h2>
+          <form
+            class="popup__form popup__form_add"
+            name="
+          profileediting"
+          >
+            <input
+              class="popup__name popup__name_type_add"
+              name="titleInput"
+              type="text"
+              placeholder="Название"
+              value=""
+            />
+
+            <input
+              class="popup__name popup__name_type_link"
+              type="url"
+              placeholder="Ссылка на картинку"
+              required
+              name="imageInput"
+            />
+
+            <button class="popup__save-button" type="submit">Создать</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup__photo">
+        <div class="popup__content popup__content_image">
+          <button
+            class="popup__close-button popup__close-button_image"
+            type="button"
+            aria-label="Закрыть"
+          ></button>
+          <img class="popup__image" src="#" alt="Изображение  местностей" />
+          <h2 class="popup__header popup__header_photo" value=""></h2>
+        </div>
+      </div>
+
+      <template class="item-template">
+        <article class="element">
+          <button
+            class="element__deletecard"
+            type="submit"
+            aria-label="Удалить"
+          ></button>
+
+          <img class="element__image" src="#" alt="Фото " type="button" />
+
+          <div class="element__pozion">
+            <h2 class="element__title" value=""></h2>
+            <button
+              class="element__like element__like_active"
+              type="button"
+              aria-label="Лайк"
+            ></button>
+          </div>
+        </article>
+      </template>
     </div>
 
     <script src="./scripts/index.js"></script>
