@@ -50,16 +50,16 @@
         <p class="footer__text">&copy; 2022 Mesto Russia</p>
       </footer>
 
-      <div class="popup">
-        <div class="popup__content">
+      <div class="popup popup_profile">
+        <div class="popup__container">
           <button
-            class="popup__close-button popup__close-button"
+            class="popup__close-button"
             type="button"
             aria-label="Закрыть"
           ></button>
           <h2 class="popup__header">Редактировать профиль</h2>
           <form
-            class="popup__form"
+            class="popup__form popup__form_profile"
             name="
           profileediting"
           >
@@ -84,9 +84,9 @@
       </div>
 
       <div class="popup popup_add">
-        <div class="popup__content">
+        <div class="popup__container">
           <button
-            class="popup__close-button popup__close-button_add"
+            class="popup__close-button"
             type="button"
             aria-label="Закрыть"
           ></button>
@@ -118,13 +118,13 @@
       </div>
 
       <div class="popup popup_photo">
-        <div class="popup__content popup__content_image">
+        <div class="popup__container popup__container_image">
           <button
             class="popup__close-button popup__close-button_image"
             type="button"
             aria-label="Закрыть"
           ></button>
-          <img class="popup__image" src="#" alt="Изображение  местностей" />
+          <img class="popup__image" src="#" alt="" />
           <h2 class="popup__header popup__header_photo" value=""></h2>
         </div>
       </div>
@@ -137,7 +137,7 @@
             aria-label="Удалить"
           ></button>
 
-          <img class="element__image" src="#" alt="Фото " type="button" />
+          <img class="element__image" src="#" alt="" type="button" />
 
           <div class="element__pozion">
             <h2 class="element__title" value=""></h2>
