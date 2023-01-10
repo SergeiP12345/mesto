@@ -71,9 +71,7 @@ function createCard(element) {
   templateTitle.textContent = element.name;
   const imgtemplate = card.querySelector(".element__image");
   imgtemplate.src = element.link;
-
-  imgPopup.alt = templateTitle.textContent;
-
+  imgtemplate.alt = templateTitle.textContent;
   const deleteButton = card.querySelector(".element__deletecard");
 
   const deleteCard = () => {
@@ -89,7 +87,7 @@ function createCard(element) {
     openPopup(photoPopup);
     headerPhoto.textContent = element.name;
     imgPopup.src = element.link;
-    imgtemplate.alt = templateTitle.textContent;
+    imgPopup.alt = element.name;
   }
   imgtemplate.addEventListener("click", () => openImagepopup());
 
