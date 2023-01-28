@@ -19,6 +19,10 @@ const formElementadd = document.querySelector(".popup__form_add");
 const nameInputadd = document.querySelector(".popup__name_type_add");
 const imageInput = document.querySelector(".popup__name_type_link");
 const buttonCloseList = document.querySelectorAll(".popup__close-button");
+const formElement = document.querySelector(".popup__form");
+const inputElement = document.querySelector(".popup__name");
+const saveButton = document.querySelector(".popup__save-button");
+
 const initialCards = [
   {
     name: "Архыз",
@@ -48,10 +52,14 @@ const initialCards = [
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", handleEscUp);
+  document.addEventListener("click", closePopupOnOverlay);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", handleEscUp);
+  document.removeEventListener("click", closePopupOnOverlay);
 }
 
 function addCard(event) {
@@ -114,8 +122,103 @@ function saveFormProfileSubmit(evtm) {
   closePopup(profilePopup);
 }
 
+/* const enableValidation = (formElement) => {
+  formElement.addEventListener("submit", (evt) => {
+    const formList = Array.from(
+      document.querySelectorAll("#form").filter((i) => i.tagName !== "BUTTON")
+    );
+    formList.forEach((formElement) => {
+      for (const formElement of formList) {
+        if (formElement.checkvalidity()) {
+          resetErorr(formElement);
+        } else {
+          evt.preventDefault();
+          activeErorr(formElement);
+        }
+      }
+    });
+  });
+  console.log(formList);
+}; */
+
+/* function resetErorr() {
+  saveButton.classList.add("popup__save-button_disabled");
+}
+
+function activeErorr() {
+  saveButton.classList.remove("popup__save-button_disabled");
+} */
+
+const handleEscUp = (evt) => {
+  const activePopup = document.querySelector(".popup_opened");
+  if (evt.key === "Escape") {
+    closePopup(activePopup);
+  }
+};
+
+function closePopupOnOverlay(evt) {
+  if (evt.target.classList.contains("popup")) {
+    closePopup(evt.target);
+  }
+}
+
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+const hideInputError = () => {
+  saveButton.classList.remove("popup__save-button_disabled");
+};
+
+const showInputError = () => {
+  saveButton.classList.add("popup__save-button_disabled");
+};
+function toggleButtonState(inputList, saveButton) {
+  if (hasInvalidInput(inputList)) {
+    saveButton.classList.add("popup__save-button_disabled");
+    saveButton.setAttribute("disabled", "disabled");
+  } else {
+    saveButton.classList.remove("popup__save-button_disabled");
+    saveButton.removeAttribute("disabled", "disabled");
+  }
+}
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll(".popup__name"));
+  const saveButton = formElement.querySelector(".popup__save-button");
+  toggleButtonState(inputList, saveButton);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener("input", function () {
+      checkInputValidity(formElement, inputElement);
+
+      toggleButtonState(inputList, saveButton);
+    });
+  });
+  console.log(inputList);
+};
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll(".popup__form"));
+  formList.forEach((formElement) => {
+    formElement.addEventListener("submit", function (evt) {});
+    setEventListeners(formElement);
+  });
+};
+
 /* Вызов функций */
+enableValidation();
 renderCard();
+
 formElementprofile.addEventListener("submit", saveFormProfileSubmit);
 formElementadd.addEventListener("submit", addCard);
 profileButton.addEventListener("click", openPopupProfile);
