@@ -68,7 +68,7 @@ function addCard(event) {
   const link = imageInput.value;
   const newCard = createCard({ name, link });
   cardContainer.prepend(newCard);
-  closePopup(event);
+  closePopup(cardNewpopup);
   nameInputadd.value = "";
   imageInput.value = "";
 }
