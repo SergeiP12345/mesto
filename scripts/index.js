@@ -122,33 +122,6 @@ function saveFormProfileSubmit(evtm) {
   closePopup(profilePopup);
 }
 
-/* const enableValidation = (formElement) => {
-  formElement.addEventListener("submit", (evt) => {
-    const formList = Array.from(
-      document.querySelectorAll("#form").filter((i) => i.tagName !== "BUTTON")
-    );
-    formList.forEach((formElement) => {
-      for (const formElement of formList) {
-        if (formElement.checkvalidity()) {
-          resetErorr(formElement);
-        } else {
-          evt.preventDefault();
-          activeErorr(formElement);
-        }
-      }
-    });
-  });
-  console.log(formList);
-}; */
-
-/* function resetErorr() {
-  saveButton.classList.add("popup__save-button_disabled");
-}
-
-function activeErorr() {
-  saveButton.classList.remove("popup__save-button_disabled");
-} */
-
 const handleEscUp = (evt) => {
   const activePopup = document.querySelector(".popup_opened");
   if (evt.key === "Escape") {
