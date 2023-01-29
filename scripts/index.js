@@ -143,13 +143,20 @@ const checkInputValidity = (formElement, inputElement) => {
   }
 };
 
-const hideInputError = () => {
-  saveButton.classList.remove("popup__save-button_disabled");
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+
+  errorElement.classList.remove("popup__input-error_active");
+  errorElement.textContent = "";
 };
 
-const showInputError = () => {
-  saveButton.classList.add("popup__save-button_disabled");
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add("popup__input-error_active");
 };
+
 function toggleButtonState(inputList, saveButton) {
   if (hasInvalidInput(inputList)) {
     saveButton.classList.add("popup__save-button_disabled");
@@ -177,7 +184,6 @@ const setEventListeners = (formElement) => {
       toggleButtonState(inputList, saveButton);
     });
   });
-  console.log(inputList);
 };
 
 const enableValidation = () => {
