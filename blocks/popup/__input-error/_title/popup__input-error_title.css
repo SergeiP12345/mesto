@@ -2,3 +2,8 @@
   position: absolute;
   top: 85px;
 }
+@media (max-width: 610px) {
+  .popup__input-error_title {
+    top: 105px;
+  }
+}

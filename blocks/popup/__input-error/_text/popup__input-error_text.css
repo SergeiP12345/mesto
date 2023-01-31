@@ -2,3 +2,9 @@
   position: absolute;
   top: 144px;
 }
+
+@media (max-width: 610px) {
+  .popup__input-error_text {
+    top: 166px;
+  }
+}
