@@ -20,6 +20,7 @@ const nameInputAdd = document.querySelector(".popup__name_type_add");
 const imageInput = document.querySelector(".popup__name_type_link");
 const buttonCloseList = document.querySelectorAll(".popup__close-button");
 const popups = Array.from(document.querySelectorAll(".popup"));
+const buttonSave = document.querySelectorAll(".popup__save-button");
 
 const initialCards = [
   {
@@ -67,7 +68,6 @@ function addCard(event) {
   closePopup(cardNewpopup);
   nameInputAdd.value = "";
   imageInput.value = "";
-  enableValidation();
 }
 
 function createCard(element) {
@@ -84,8 +84,8 @@ function createCard(element) {
   };
   buttonDelete.addEventListener("click", deleteCard);
 
-  const ButtonHandleLike = card.querySelector(".element__like");
-  ButtonHandleLike.addEventListener("click", (evt) => {
+  const buttonHandleLike = card.querySelector(".element__like");
+  buttonHandleLike.addEventListener("click", (evt) => {
     evt.target.classList.toggle("element__like_active");
   });
   function openImagePopup(evt) {

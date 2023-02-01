@@ -38,7 +38,11 @@ function toggleButtonState(inputList, buttonSave) {
     buttonSave.removeAttribute("disabled", "disabled");
   }
 }
-
+function disableButtonState(formElement, config) {
+  const buttonElement = formElement.querySelector(config.submitButtonSelector);
+  buttonElement.classList.add(config.inactiveButtonClass);
+  buttonElement.setAttribute("disabled", "disabled");
+}
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
@@ -60,10 +64,12 @@ const setEventListeners = (formElement) => {
   });
 };
 
-const enableValidation = () => {
+const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((formElement) => {
-    formElement.addEventListener("submit", function (evt) {});
+    formElement.addEventListener("submit", function (evt) {
+      disableButtonState(formElement, config);
+    });
     setEventListeners(formElement, config);
   });
 };

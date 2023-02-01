@@ -4,18 +4,21 @@
   margin-right: 9%;
   margin-left: 9%;
   min-height: 30px;
-  max-width: 352px;
+  width: 352px;
   visibility: visible;
 }
 
 @media (max-width: 750px) {
   .popup__input-error_active {
-    max-width: 305px;
+    width: 254px;
+    max-width: 254px;
+    font-size: 10px;
   }
 }
-
 @media (max-width: 610px) {
   .popup__input-error_active {
+    width: 195px;
+    max-width: 195px;
     font-size: 10px;
   }
 }

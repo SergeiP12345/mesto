@@ -25,6 +25,10 @@
     height: 46px;
     font-size: 14px;
     line-height: 17px;
+  }
+}
+@media (max-width: 610px) {
+  .popup__save-button {
     margin: 45px auto 25px auto;
   }
 }
