@@ -1,6 +1,6 @@
 import { Card } from "./card.js";
 import { FormValidator } from "./validate.js";
-import { validationConfig } from "./config.js";
+import { validatorConfig } from "./config.js";
 
 const headerPhoto = document.querySelector(".popup__header_photo");
 const imgPopup = document.querySelector(".popup__image");
@@ -15,7 +15,7 @@ const userText = document.querySelector(".profile__text");
 const formProfile = document.querySelector(".popup__form_profile");
 const nameInput = document.querySelector(".popup__name_type_about");
 const textInput = document.querySelector(".popup__name_type_text");
-const template = document
+const itemTemplate = document
   .querySelector(".item-template")
   .content.querySelector(".element");
 const cardContainer = document.querySelector(".elements");
@@ -25,8 +25,8 @@ const imageInput = document.querySelector(".popup__name_type_link");
 const buttonCloseList = document.querySelectorAll(".popup__close-button");
 const popups = Array.from(document.querySelectorAll(".popup"));
 
-const editProfileValidation = new FormValidator(validationConfig, profilePopup);
-const addCardValidation = new FormValidator(validationConfig, cardNewpopup);
+const editProfileValidatior = new FormValidator(validatorConfig, profilePopup);
+const addCardValidator = new FormValidator(validatorConfig, cardNewpopup);
 
 const initialCards = [
   {
@@ -74,14 +74,11 @@ function addCard(event) {
   closePopup(cardNewpopup);
   nameInputAdd.value = "";
   imageInput.value = "";
-  addCardValidation._toggleButtonState();
+  addCardValidator.resetValidation();
 }
 
-(function renderCard() {
-  const cards = initialCards.map((card) => {
-    return createCard(card);
-  });
-  cardContainer.append(...cards);
+(function renderCards() {
+  cardContainer.append(...initialCards.map(createCard));
 })();
 
 function openPopupProfile() {
@@ -115,7 +112,7 @@ function closePopupOnOverlay(evt) {
 }
 
 function createCard(item) {
-  return new Card(item, template, handleCardClick).generateCard();
+  return new Card(item, itemTemplate, handleCardClick).generateCard();
 }
 
 function handleCardClick(name, link) {
@@ -136,5 +133,5 @@ buttonCloseList.forEach((btn) => {
 });
 
 cardNewButton.addEventListener("click", () => openPopup(cardNewpopup));
-editProfileValidation.enableValidation();
-addCardValidation.enableValidation();
+editProfileValidatior.enableValidation();
+addCardValidator.enableValidation();

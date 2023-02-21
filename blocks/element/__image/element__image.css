@@ -5,6 +5,7 @@
   border-end-end-radius: 0;
   object-fit: cover;
   background-size: cover;
+  background-color: black;
 }
 .element__image:hover {
   cursor: pointer;

@@ -1,4 +1,4 @@
-const validationConfig = {
+const validatorConfig = {
   formSelector: ".popup__form",
   inputSelector: ".popup__name",
   submitButtonSelector: ".popup__save-button",
@@ -7,4 +7,4 @@ const validationConfig = {
   errorClass: "popup__input-error_active",
 };
 
-export { validationConfig };
+export { validatorConfig };
