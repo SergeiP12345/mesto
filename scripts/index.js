@@ -15,9 +15,7 @@ const userText = document.querySelector(".profile__text");
 const formProfile = document.querySelector(".popup__form_profile");
 const nameInput = document.querySelector(".popup__name_type_about");
 const textInput = document.querySelector(".popup__name_type_text");
-const itemTemplate = document
-  .querySelector(".item-template")
-  .content.querySelector(".element");
+
 const cardContainer = document.querySelector(".elements");
 const formElementAdd = document.querySelector(".popup__form_add");
 const nameInputAdd = document.querySelector(".popup__name_type_add");
@@ -25,8 +23,8 @@ const imageInput = document.querySelector(".popup__name_type_link");
 const buttonCloseList = document.querySelectorAll(".popup__close-button");
 const popups = Array.from(document.querySelectorAll(".popup"));
 
-const editProfileValidatior = new FormValidator(validatorConfig, profilePopup);
-const addCardValidator = new FormValidator(validatorConfig, cardNewpopup);
+const editProfileValidatior = new FormValidator(validatorConfig, formProfile);
+const addCardValidator = new FormValidator(validatorConfig, formElementAdd);
 
 const initialCards = [
   {
@@ -112,7 +110,7 @@ function closePopupOnOverlay(evt) {
 }
 
 function createCard(item) {
-  return new Card(item, itemTemplate, handleCardClick).generateCard();
+  return new Card(item, "#template", handleCardClick).generateCard();
 }
 
 function handleCardClick(name, link) {
