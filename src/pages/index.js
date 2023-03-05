@@ -6,8 +6,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Card } from "../components/Card.js";
 
-// index.js
-
 import "./index.css";
 
 const headerPhoto = document.querySelector(".popup__header_photo");
