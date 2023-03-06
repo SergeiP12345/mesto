@@ -1,4 +1,4 @@
-import { validatorConfig, initialCards } from "../../utils/config.js";
+import { validatorConfig, initialCards } from "../utils/config.js";
 import { Section } from "../components/Section.js";
 import { UserInfo } from "../components/UserInfo.js";
 import PopupWithImage from "../components/PopupWithImage.js";
