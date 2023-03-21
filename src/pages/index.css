@@ -48,3 +48,7 @@
 @import url(../blocks/popup/__input-bottom/popup__input-bottom.css);
 @import url(../blocks/popup/_photo/popup_photo.css);
 @import url(../blocks/popup/_add/popup_add.css);
+@import url(../blocks/element/__like-number/element__likenumber.css);
+@import url(../blocks/popup/_confident/popup_confident.css);
+@import url(../blocks/popup/_avatar/popup_avatar.css);
+@import url(../blocks/profile/__cover/profile__cover.css);

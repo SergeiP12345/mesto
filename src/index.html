@@ -16,11 +16,17 @@
       </header>
       <main>
         <section class="profile">
+          <button
+            class="profile__cover"
+            type="button"
+            aria-label="Редактирование аватара"
+          ></button>
           <img
             class="profile__avatar"
             src="<%=require('./images/image.jpg')%>"
             alt="Изображение профиля"
           />
+
           <div class="profile__content">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button
@@ -67,6 +73,7 @@
               minlength="2"
               maxlength="40"
               required
+              name="name"
             />
             <span
               class="popup__input-error popup__input-error_name"
@@ -81,12 +88,15 @@
               maxlength="200"
               required
               id="text-input"
+              name="about"
             />
             <span
               class="popup__input-error popup__input-error_text"
               id="text-input-error"
             ></span>
-            <button class="popup__save-button" type="submit">Сохранить</button>
+            <button class="popup__save-button" type="submit" value="Сохранить">
+              Сохранить
+            </button>
           </form>
         </div>
       </div>
@@ -109,6 +119,7 @@
               minlength="2"
               maxlength="30"
               required
+              name="name"
             />
             <span
               class="popup__input-error popup__input-error_title"
@@ -120,6 +131,7 @@
               placeholder="Ссылка на картинку"
               required
               id="image-input"
+              name="link"
             />
             <span
               class="popup__input-error popup__input-error_image"
@@ -142,6 +154,45 @@
         </div>
       </div>
 
+      <div class="popup popup_confident">
+        <div class="popup__container">
+          <button
+            class="popup__close-button"
+            type="button"
+            aria-label="Закрыть"
+          ></button>
+          <h2 class="popup__header">Вы уверены?</h2>
+          <button class="popup__save-button" type="submit">да</button>
+        </div>
+      </div>
+
+      <div class="popup popup_avatar">
+        <div class="popup__container">
+          <button
+            class="popup__close-button"
+            type="button"
+            aria-label="Закрыть"
+          ></button>
+          <h2 class="popup__header">Обновить аватар</h2>
+          <form class="popup__form popup__form_avatar" novalidate>
+            <input
+              class="popup__name popup__name_type_link"
+              type="url"
+              placeholder="Ссылка на картинку"
+              required
+              id="image-input"
+            />
+            <span
+              class="popup__input-error popup__input-error_image"
+              id="image-input-error"
+            ></span>
+            <button class="popup__save-button" type="submit" value="Сохранить">
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
+
       <template class="item-template" id="template">
         <article class="element">
           <button
@@ -154,11 +205,15 @@
 
           <div class="element__pozion">
             <h2 class="element__title" value=""></h2>
-            <button
-              class="element__like element__like_active"
-              type="button"
-              aria-label="Лайк"
-            ></button>
+            <div class="element__container-like">
+              <button
+                class="element__like element__like_active"
+                type="button"
+                aria-label="Лайк"
+                name="like"
+              ></button>
+              <p class="element__like-number"></p>
+            </div>
           </div>
         </article>
       </template>

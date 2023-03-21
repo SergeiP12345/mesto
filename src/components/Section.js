@@ -4,9 +4,11 @@ export class Section {
     this._container = containerSelector;
   }
 
-  renderItems = (items) => {
-    items.forEach(this._renderer);
-  };
+  renderItems(items) {
+    items.forEach((item) => {
+      this._renderer(item);
+    });
+  }
 
   addItem(cardElement) {
     this._container.prepend(cardElement);
