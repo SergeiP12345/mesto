@@ -29,8 +29,9 @@ const editAvatarUrl = document.querySelector(".popup__name_type_link");
 const popupUpdateAvatar = document.querySelector(".popup_avatar");
 const buttonUpdateAvatar = document.querySelector(".profile__cover");
 const popupConfident = document.querySelector(".popup_confident");
-
-let profileId = "";
+const formElementAvatar = document.querySelector(".popup__form_avatar");
+let profileId;
+let userId;
 //для хранения данных картички
 let cardData;
 
@@ -41,33 +42,27 @@ const api = new Api(connectionConfig);
 //валидация редактирования аватара
 const editAvatarValidation = new FormValidator(
   validatorConfig,
-  popupUpdateAvatar
+  formElementAvatar
 );
 
-const editProfileValidation = new FormValidator(validatorConfig, profilePopup);
+const editProfileValidation = new FormValidator(validatorConfig, formProfile);
 
-const addCardValidation = new FormValidator(validatorConfig, cardNewpopup);
-
-const confirmPopupValidation = new FormValidator(
-  validatorConfig,
-  popupConfident
-);
+const addCardValidation = new FormValidator(validatorConfig, formElementAdd);
 
 const addPopup = new PopupWithForm(
   {
-    submitHandler: (name, link) => {
-      console.log(name),
-        api
-          .postNewCard(name, link)
-          .then((item) => {
-            renderCards.addItem(createCard(item));
-            addPopup.close();
-          })
-          .catch((err) => console.log(err))
-          .finally(() => {
-            addPopup.changeToOriginalText();
-            addCardValidation.resetValidation();
-          });
+    submitHandler: (data) => {
+      api
+        .postNewCard(data.name, data.link)
+        .then((item) => {
+          renderCards.addItem(createCard(item));
+          addPopup.close();
+        })
+        .catch((err) => console.log(err))
+        .finally(() => {
+          addPopup.changeToOriginalText();
+          addCardValidation.resetValidation();
+        });
     },
   },
   cardNewpopup,
@@ -97,21 +92,19 @@ const editPopup = new PopupWithForm(
   validatorConfig
 );
 
-const confirmForm = new PopupWithForm(
+const popupConfirm = new PopupWithForm(
   {
     submitHandler: () => {
-      confirmPopupValidation.disableButton();
       api
         .confirmSubmit(cardData._id)
         .then((response) => {
-          cardData._element.remove();
-          confirmForm.close();
+          cardData._element.removeCard();
+          popupConfirm.close();
           return response;
         })
         .catch((err) => console.log(err))
         .finally(() => {
-          confirmForm.changeToOriginalText();
-          confirmPopupValidation.resetValidation();
+          popupConfirm.changeToOriginalText();
         });
     },
   },
@@ -119,19 +112,19 @@ const confirmForm = new PopupWithForm(
   validatorConfig
 );
 
-const editAvatarForm = new PopupWithForm(
+const popupEditAvatar = new PopupWithForm(
   {
     submitHandler: (data) => {
-      popupUpdateAvatar;
+      popupEditAvatar;
       api
         .editProfileAvatar(data.avatar)
         .then((response) => {
           profileAvatar.src = response.avatar;
-          editAvatarForm.close();
+          popupEditAvatar.close();
         })
         .catch((err) => console.log(err))
         .finally(() => {
-          editAvatarForm.changeToOriginalText();
+          popupEditAvatar.changeToOriginalText();
           editAvatarValidation.resetValidation();
         });
     },
@@ -140,7 +133,7 @@ const editAvatarForm = new PopupWithForm(
   validatorConfig
 );
 
-const popupWithImage = new PopupWithImage(photoPopup, headerPhoto, imgPopup);
+const popupImage = new PopupWithImage(photoPopup);
 
 const userInfo = new UserInfo(
   {
@@ -182,16 +175,16 @@ function openEditAvatarPopup() {
 
   editAvatarUrl.value = profileAvatar.src;
 
-  editAvatarForm.open();
+  popupEditAvatar.open();
 }
 
-function handleCardClick(name, link, headerPhoto) {
-  popupWithImage.open(name, link, headerPhoto);
+function handleCardClick(name, link) {
+  popupImage.open(name, link);
 }
 
 function handleDeleteCard(data) {
   cardData = data;
-  confirmForm.open();
+  popupConfirm.open();
 }
 
 function handleLikeCard(card, likeButton) {
@@ -221,8 +214,9 @@ function createCard(item) {
     handleCardClick,
     item,
     template,
-    handleDeleteCard,
-    handleLikeCard
+    userId,
+    handleDeleteCard
+    /* handleLikeCard */
   ).generateCard();
 }
 
@@ -232,24 +226,26 @@ editAvatarValidation.enableValidation();
 
 addPopup.setEventListeners();
 editPopup.setEventListeners();
-popupWithImage.setEventListeners();
-/* confirmForm.setEventListeners(); */
-editAvatarForm.setEventListeners();
+popupImage.setEventListeners();
+/*  popupConfirm.setEventListeners(); */
+popupEditAvatar.setEventListeners();
 
 profileButton.addEventListener("click", openEditProfilePopup);
 
 cardNewButton.addEventListener("click", openAddCardPopup);
 //нажатие кнопки редактирования профиля
 buttonUpdateAvatar.addEventListener("click", openEditAvatarPopup);
-buttonUpdateAvatar.addEventListener("click", popupWithImage);
 
 Promise.all([api.getProfileInfo(), api.getInitialCards()])
-  .then(([profileInfo, cards]) => {
-    profileId = profileInfo._id;
+  .then(([profileInfo, cards, userId]) => {
+    userId = profileInfo._id;
+
     userInfo.setUserInfo({
       name: profileInfo.name,
       info: profileInfo.about,
     });
+    console.log(userId);
+
     userInfo.setUserAvatar({ avatarUrl: profileInfo.avatar });
     renderCards.renderItems(cards);
   })

@@ -8,8 +8,8 @@ export class UserInfo {
   //публичный метод возвращает объект с данными пользователя
   getUserInfo() {
     const userData = {
-      name: this._nameSelector.innerHTML,
-      info: this._infoSelector.innerHTML,
+      name: this._nameSelector.textContent,
+      about: this._infoSelector.textContent,
     };
     return userData;
   }

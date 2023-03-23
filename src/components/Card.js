@@ -2,33 +2,33 @@ export class Card {
   constructor(
     template,
     data,
-    owner,
+
     handleCardClick,
     userId,
     like,
     dislike,
-    handleRemoveButtonClick
+    handleDeleteCard
   ) {
     this._title = data.name;
     this._link = data.link;
     this._likes = data.likes;
     this._id = data._id;
-
-    this._ownerId = owner._id;
+    this._userId = userId;
+    this._ownerId = data.owner._id;
+    this._isOwner = this._ownerId === this._userId;
     this._templateContainer = template;
     this._handleCardClick = handleCardClick;
-    this._userId = userId;
     this._like = like;
     this._dislike = dislike;
-    this._handleRemoveButtonClick = handleRemoveButtonClick;
+    this._handleDeleteCard = handleDeleteCard;
   }
 
   getCardId() {
     return this._id;
   }
 
-  handleLikeCard(data) {
-    this._likes = data.likes;
+  handleLikeCard(value) {
+    this._likes = value.likes;
     this._countLikeElement.textContent = this._likes.length;
     this._likeButton.classList.toggle("element__like_active");
   }
@@ -70,7 +70,7 @@ export class Card {
 
   _setEventListeners() {
     this._deleteBtn.addEventListener("click", () => {
-      this._handleRemoveButtonClick();
+      this.removeCard();
     });
     this._likeButton.addEventListener("click", () => this._toggleLike());
     this._cardsElementImage.addEventListener("click", () =>
@@ -90,7 +90,9 @@ export class Card {
       ".element__like-number"
     );
     this._countLikeElement.textContent = this._likes.length;
-
+    this._deleteBtnremove = this._cardElement.querySelector(
+      "element__deletecard_hidden"
+    );
     this._setEventListeners();
     this._userLiked();
     this._hasDeleteBtn();
@@ -99,6 +101,7 @@ export class Card {
     this._cardsElementImage.alt = this._title;
     this._cardsElementTitle.textContent = this._title;
 
+    console.log(this._ownerId);
     return this._cardElement;
   }
 }
