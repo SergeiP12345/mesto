@@ -6,6 +6,7 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Card } from "../components/Card.js";
 import { Api } from "../components/Api.js";
+import { PopupConfirmation } from "../components/PopupConfirm.js";
 
 import "./index.css";
 
@@ -31,7 +32,7 @@ const buttonUpdateAvatar = document.querySelector(".profile__cover");
 const popupConfident = document.querySelector(".popup_confident");
 const formElementAvatar = document.querySelector(".popup__form_avatar");
 let profileId;
-let userId;
+let userId = "";
 //для хранения данных картички
 let cardData;
 
@@ -89,26 +90,6 @@ const editPopup = new PopupWithForm(
     },
   },
   profilePopup,
-  validatorConfig
-);
-
-const popupConfirm = new PopupWithForm(
-  {
-    submitHandler: () => {
-      api
-        .confirmSubmit(cardData._id)
-        .then((response) => {
-          cardData._element.removeCard();
-          popupConfirm.close();
-          return response;
-        })
-        .catch((err) => console.log(err))
-        .finally(() => {
-          popupConfirm.changeToOriginalText();
-        });
-    },
-  },
-  popupConfident,
   validatorConfig
 );
 
@@ -177,47 +158,59 @@ function openEditAvatarPopup() {
 
   popupEditAvatar.open();
 }
-
-function handleCardClick(name, link) {
-  popupImage.open(name, link);
+function handleCardClick(name, link, headerPhoto) {
+  popupWithImage.open(name, link, headerPhoto);
 }
+const popupConfirmation = new PopupConfirmation(popupConfident);
 
-function handleDeleteCard(data) {
-  cardData = data;
-  popupConfirm.open();
-}
-
-function handleLikeCard(card, likeButton) {
-  if (likeButton.classList.contains(likeCheckedSelector)) {
-    api
-      .deleteLike(card._id)
-      .then((res) => {
-        card.like(false);
-
-        card.setLikesCount(res.likes.length);
-      })
-      .catch((err) => console.log(err));
-  } else {
-    api
-      .addLike(card._id)
-      .then((res) => {
-        card.like(true);
-
-        card.setLikesCount(res.likes.length);
-      })
-      .catch((err) => console.log(err));
-  }
-}
-
-function createCard(item) {
-  return new Card(
-    handleCardClick,
-    item,
+function createCard(template, data) {
+  const card = new Card(
+    data,
     template,
+    handleCardClick,
     userId,
-    handleDeleteCard
-    /* handleLikeCard */
-  ).generateCard();
+
+    {
+      submitHandler: (data) => {
+        card.getCardId(data);
+        api
+          .addLike(id)
+          .then((data) => {
+            card.handleLikeCard(data);
+          })
+          .catch((err) => {
+            console.log(`Ошибка: ${err}`);
+          });
+      },
+    },
+    (id) => {
+      card.getCardId();
+      api
+        .deleteLike(id)
+        .then((data) => {
+          card.handleLikeCard(data);
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+        });
+    },
+    () => {
+      popupConfirmation.open();
+      popupConfirmation.setSubmitCallback(() => {
+        const cardId = card.getCardId(data);
+        api
+          .deleteCard(cardId)
+          .then(() => {
+            popupConfirmation.close();
+            card.removeCard();
+          })
+          .catch((err) => {
+            console.log(`Ошибка: ${err}`);
+          });
+      });
+    }
+  );
+  return card.generateCard();
 }
 
 editProfileValidation.enableValidation();
@@ -227,7 +220,7 @@ editAvatarValidation.enableValidation();
 addPopup.setEventListeners();
 editPopup.setEventListeners();
 popupImage.setEventListeners();
-/*  popupConfirm.setEventListeners(); */
+popupConfirmation.setEventListeners();
 popupEditAvatar.setEventListeners();
 
 profileButton.addEventListener("click", openEditProfilePopup);
@@ -237,14 +230,13 @@ cardNewButton.addEventListener("click", openAddCardPopup);
 buttonUpdateAvatar.addEventListener("click", openEditAvatarPopup);
 
 Promise.all([api.getProfileInfo(), api.getInitialCards()])
-  .then(([profileInfo, cards, userId]) => {
+  .then(([profileInfo, cards]) => {
     userId = profileInfo._id;
 
     userInfo.setUserInfo({
       name: profileInfo.name,
       info: profileInfo.about,
     });
-    console.log(userId);
 
     userInfo.setUserAvatar({ avatarUrl: profileInfo.avatar });
     renderCards.renderItems(cards);

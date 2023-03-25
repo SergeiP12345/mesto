@@ -162,7 +162,9 @@
             aria-label="Закрыть"
           ></button>
           <h2 class="popup__header">Вы уверены?</h2>
-          <button class="popup__save-button" type="submit">да</button>
+          <form class="popup__form popup__form_add" novalidate>
+            <button class="popup__save-button" type="submit">да</button>
+          </form>
         </div>
       </div>
 
@@ -209,7 +211,7 @@
             <h2 class="element__title" value=""></h2>
             <div class="element__container-like">
               <button
-                class="element__like element__like_active"
+                class="element__like"
                 type="button"
                 aria-label="Лайк"
                 name="like"

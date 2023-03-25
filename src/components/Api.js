@@ -40,8 +40,8 @@ export class Api {
     }).then(this._answer);
   }
 
-  deleteLike(id) {
-    return fetch("https://mesto.nomoreparties.co/v1/cohort-61/cards/cardId", {
+  deleteLike(Id) {
+    return fetch(`${this._cardsPage}/${Id}/likes`, {
       method: "DELETE",
       headers: {
         authorization: "98e7c878-b0cc-4c78-aade-66752389e35e",
@@ -49,8 +49,8 @@ export class Api {
     }).then(this._answer);
   }
 
-  addLike(id) {
-    return fetch(`${this._cardsPage}/${id}/likes`, {
+  addLike(Id) {
+    return fetch(`${this._cardsPage}/${Id}/likes`, {
       method: "PUT",
       headers: {
         authorization: "98e7c878-b0cc-4c78-aade-66752389e35e",
@@ -61,6 +61,9 @@ export class Api {
   deleteCard(cardId) {
     return fetch(`${this._cardsPage}/${cardId}`, {
       method: "DELETE",
+      headers: {
+        authorization: "98e7c878-b0cc-4c78-aade-66752389e35e",
+      },
     }).then(this._answer);
   }
   //profile methods
