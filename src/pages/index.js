@@ -159,7 +159,7 @@ function openEditAvatarPopup() {
   popupEditAvatar.open();
 }
 function handleCardClick(name, link, headerPhoto) {
-  popupWithImage.open(name, link, headerPhoto);
+  popupImage.open(name, link, headerPhoto);
 }
 const popupConfirmation = new PopupConfirmation(popupConfident);
 
