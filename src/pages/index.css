@@ -53,3 +53,5 @@
 @import url(../blocks/popup/_confident/popup_confident.css);
 @import url(../blocks/popup/_avatar/popup_avatar.css);
 @import url(../blocks/profile/__cover/profile__cover.css);
+@import url(../blocks/popup/__name/_type/_avatar/.popup__name_type_link_avatar.css);
+@import url(../blocks/popup/__input-error/_image/_avatar/popup__input-error_image.css);

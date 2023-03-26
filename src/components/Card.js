@@ -1,13 +1,13 @@
 export class Card {
   constructor(
     template,
-    data,
+    {data,
+    userId,
     handleRemoveButtonClick,
     handleCardClick,
-    userId,
-    like,
-    dislike
+    handleLikeButtonClick}
   ) {
+    this._data = data;
     this._title = data.name;
     this._link = data.link;
     this._likes = data.likes;
@@ -16,9 +16,7 @@ export class Card {
     this._ownerId = data.owner._id;
     this._templateContainer = template;
     this._handleCardClick = handleCardClick;
-    this._like = like;
-    this._dislike = dislike;
-
+    this._handleLikeButtonClick = handleLikeButtonClick;
     this._handleRemoveButtonClick = handleRemoveButtonClick;
   }
 
@@ -28,69 +26,57 @@ export class Card {
 
   //прячем корзину, если чужая карточка
   hiddenDeleteBtn() {
-    this._isOwner = this._ownerId === this._userId;
-    this._deleteBtn.classList.toggle(
-      "element__deletecard_hidden",
-      !this._isOwner
-    );
+    this._isMy = this._ownerId === this._userId;
+    if (!this._isMy) {
+      this._deleteBtn.classList.toggle("element__deletecard_hidden");
+    }
   }
 
+  //проверяем наличие лайка для обращения к серверу
+  isLike() {
+    return this._likeButton.classList.contains("element__like_active");
+  }
+  
   _getTemplateElement() {
     return document
       .querySelector("#template")
       .content.querySelector(".element")
       .cloneNode(true);
   }
-  _toggleLike() {
-    if (this._likeButton.classList.contains("element__like-button_active")) {
-      this._dislike(this._id);
-    } else {
-      this._like(this._id);
-    }
+  
+  handleLikeCard(count) {
+    this._likes = this._data.likes;
+    this._countLikeElement.textContent = count;
+    this._likeButton.classList.toggle("element__like_active");
   }
-  handleLikeCard(data) {
-    this._likes = data.likes;
-    this._countLikeElement.textContent = this._likes.length;
-    this._likeButton.classList.toggle("element__like-button_active");
-  }
-
-  _userLiked() {
-    this._likes.forEach((elementId) => {
-      if (elementId._id === this._userId) {
-        this._likeButton.classList.add("element__like-button_active");
-      } else {
-        this._likeButton.classList.remove("element__like-button_active");
-      }
-    });
+//показываем активный лайк
+  userLiked() {
+    this._likes.forEach((elem) => {
+      if (elem._id === this._userId) {
+        this._likeButton.classList.add("element__like_active");
+      } });
   }
   removeCard() {
     this._cardElement.remove();
+    this._cardElement = null;
   }
 
   _setEventListeners() {
-    this._deleteBtn.addEventListener("click", () => {
-      this._handleRemoveButtonClick();
-    });
-    this._likeButton.addEventListener("click", () => this._toggleLike());
-    this._cardsElementImage.addEventListener("click", () =>
-      this.handleCardClick(this._link, this._title)
-    );
+    this._deleteBtn.addEventListener("click", () => {this._handleRemoveButtonClick(this._cardElement)});
+    this._likeButton.addEventListener("click", () => {this._handleLikeButtonClick()});
+    this._cardsElementImage.addEventListener("click", () => {this._handleCardClick(this._title, this._link)});
   }
 
   generateCard() {
     this._cardElement = this._getTemplateElement();
     this._deleteBtn = this._cardElement.querySelector(".element__deletecard");
-    this._cardsElementImage =
-      this._cardElement.querySelector(".element__image");
-    this._cardsElementTitle =
-      this._cardElement.querySelector(".element__title");
+    this._cardsElementImage = this._cardElement.querySelector(".element__image");
+    this._cardsElementTitle = this._cardElement.querySelector(".element__title");
     this._likeButton = this._cardElement.querySelector(".element__like");
-    this._countLikeElement = this._cardElement.querySelector(
-      ".element__like-number"
-    );
+    this._countLikeElement = this._cardElement.querySelector(".element__like-number");
     this._countLikeElement.textContent = this._likes.length;
     this._setEventListeners();
-    this._userLiked();
+    this.userLiked();
     this.hiddenDeleteBtn();
 
     this._cardsElementImage.src = this._link;
