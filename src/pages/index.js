@@ -222,11 +222,7 @@ popupEditAvatar.setEventListeners();
 
 profileButton.addEventListener("click", openEditProfilePopup);
 
-cardNewButton.addEventListener(
-  "click",
-  openAddCardPopup,
-  addCardValidation.resetValidation()
-);
+cardNewButton.addEventListener("click", openAddCardPopup);
 //нажатие кнопки редактирования профиля
 buttonUpdateAvatar.addEventListener("click", openEditAvatarPopup);
 
