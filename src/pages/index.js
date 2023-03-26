@@ -68,7 +68,8 @@ const addPopup = new PopupWithForm(
   },
 
   cardNewpopup,
-  validatorConfig
+  validatorConfig,
+  addPopup.resetValidation()
 );
 
 const editPopup = new PopupWithForm(
