@@ -31,16 +31,17 @@ const popupUpdateAvatar = document.querySelector(".popup_avatar");
 const buttonUpdateAvatar = document.querySelector(".profile__cover");
 const popupConfident = document.querySelector(".popup_confident");
 const formElementAvatar = document.querySelector(".popup__form_avatar");
-let profileId;
+
 let userId = "";
-//для хранения данных картички
-let cardData;
 
-//экземпляр ProfileApi для контроля информации пользователя
-const api = new Api(connectionConfig);
+const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-60",
+  headers: {
+    authorization: "014483e6-50f6-4a65-91e7-a3fda779d527",
+    "Content-Type": "application/json",
+  },
+});
 
-//функциии валидации форм:
-//валидация редактирования аватара
 const editAvatarValidation = new FormValidator(
   validatorConfig,
   formElementAvatar

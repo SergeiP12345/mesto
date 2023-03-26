@@ -33,9 +33,5 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
-const connectionConfig = {
-  token: "98e7c878-b0cc-4c78-aade-66752389e35e",
-  groupId: "cohort-61",
-  url: "https://mesto.nomoreparties.co",
-};
-export { validatorConfig, initialCards, connectionConfig };
+
+export { validatorConfig, initialCards };
