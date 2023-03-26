@@ -31,6 +31,7 @@ export class PopupWithForm extends Popup {
 
   close() {
     super.close();
+    this._form.reset();
   }
   _changeToLoadingText() {
     this._submitButton.textContent = "Сохранить...";

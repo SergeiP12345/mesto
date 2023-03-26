@@ -43,12 +43,12 @@ const api = new Api(connectionConfig);
 //валидация редактирования аватара
 const editAvatarValidation = new FormValidator(
   validatorConfig,
-  popupUpdateAvatar
+  formElementAvatar
 );
 
-const editProfileValidation = new FormValidator(validatorConfig, profilePopup);
+const editProfileValidation = new FormValidator(validatorConfig, formProfile);
 
-const addCardValidation = new FormValidator(validatorConfig, cardNewpopup);
+const addCardValidation = new FormValidator(validatorConfig, formElementAdd);
 
 const addPopup = new PopupWithForm(
   {
@@ -62,14 +62,12 @@ const addPopup = new PopupWithForm(
         .catch((err) => console.log(err))
         .finally(() => {
           addPopup.changeToOriginalText();
-          addCardValidation.resetValidation();
         });
     },
   },
 
   cardNewpopup,
-  validatorConfig,
-  addPopup.resetValidation()
+  validatorConfig
 );
 
 const editPopup = new PopupWithForm(
@@ -87,7 +85,6 @@ const editPopup = new PopupWithForm(
         .catch((err) => console.log(err))
         .finally(() => {
           editPopup.changeToOriginalText();
-          editProfileValidation.resetValidation();
         });
     },
   },
@@ -109,7 +106,6 @@ const popupEditAvatar = new PopupWithForm(
         .catch((err) => console.log(err))
         .finally(() => {
           popupEditAvatar.changeToOriginalText();
-          editAvatarValidation.resetValidation();
         });
     },
   },
@@ -150,7 +146,7 @@ function openEditProfilePopup() {
   const getUserInfo = userInfo.getUserInfo();
 
   nameInput.value = getUserInfo.name;
-  textInput.value = getUserInfo.info;
+  textInput.value = getUserInfo.about;
 
   editPopup.open();
 }
