@@ -35,9 +35,9 @@ const formElementAvatar = document.querySelector(".popup__form_avatar");
 let userId = "";
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-60",
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-61",
   headers: {
-    authorization: "014483e6-50f6-4a65-91e7-a3fda779d527",
+    authorization: "98e7c878-b0cc-4c78-aade-66752389e35e",
     "Content-Type": "application/json",
   },
 });
